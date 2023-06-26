@@ -1,0 +1,54 @@
+@import '../../style/theme/index.less';
+
+.cyber-scrolling-effect {
+  overflow: hidden;
+}
+
+.cyber-login-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  outline: 0;
+  z-index: 1009;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: @modal-mask-bg;
+  &.cyber-login-mask-hidden {
+    animation: cyber-close-mask 0.2s;
+  }
+  .cyber-close-mask {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    cursor: pointer;
+  }
+}
+
+@keyframes cyber-close-mask {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.cyber-login-fade-move,
+.cyber-login-fade-leave-active,
+.cyber-login-fade-enter-active {
+  transition: all .2s;
+}
+
+.cyber-login-fade-enter-from {
+  opacity: 0;
+  transform: translate(100%) scale(0);
+}
+
+.cyber-login-fade-leave-active {
+  opacity: 0;
+  transform: translate(100%) scale(0);
+}

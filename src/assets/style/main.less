@@ -1,0 +1,62 @@
+@import 'ant-design-vue/dist/antd.less';
+@import '../../../components/index.less';
+
+
+html,
+body {
+  min-width: 1360px;
+  min-height: 608px;
+  font-family: 
+    "PingFang SC",
+    "San Francisco",
+    "Source Han Sans SC",
+    "思源黑体",
+    Roboto,
+    "微软雅黑",
+    "Microsoft YaHei",
+    Tahoma,
+    sans-serif !important;
+  padding: 0;
+  margin: 0;
+  background: #F9F9F9;
+  font-weight: 400;
+  color: #666666;
+  line-height: 1.5;
+}
+
+div,
+ul {
+  box-sizing: border-box;
+  &::-webkit-scrollbar {
+    // 滚动条整体部分，可以设置宽度啥的
+    width: 7px;
+    height: 7px;
+    background: #e5e5e5;
+  }
+  // ::-webkit-scrollbar-button { // 滚动条两端的按钮
+  //   background: #e5e5e5;
+  // } 
+  // ::-webkit-scrollbar-button:vertical:start { // 滚动开始端按钮
+  //   background: #e5e5e5;
+  // }// ::-webkit-scrollbar-button:vertical:end { // 滚动结尾端按钮
+  //   background: #e5e5e5;
+  // }
+  &::-webkit-scrollbar-track {
+    // 外层轨道
+    border-radius: 100px;
+    background: #FFFFFF;
+  }
+  // ::-webkit-scrollbar-track-piece 内层轨道，滚动条中间部分(除去)
+  &::-webkit-scrollbar-thumb {
+    // 滚动条里面可以拖动的那个
+    background: #e5e5e5;
+    border-radius: 100px;
+  }
+  // ::-webkit-scrollbar-corner 边角
+  // ::-webkit-resizer 定义右下角拖动块的样式
+}
+
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}

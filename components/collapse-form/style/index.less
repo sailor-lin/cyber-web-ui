@@ -1,0 +1,66 @@
+@import '../../style/theme/index.less';
+
+.cyber-collapse-form {
+  width: 100%;
+  padding-right: 20px;
+  overflow: hidden;
+  // 收缩样式
+  &.cyber-collapse-form-shrink {
+    height: 56px;
+    &.show {
+      height: initial;
+    }
+  }
+  .cyber-collapse-form-item {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    float: left;
+  }
+
+  .cyber-collapse-form-right {
+    float: right;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    margin-left: 4px;
+    & > * {
+      margin-left: 8px;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+  .cyber-collapse-action-box {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    float: right;
+    margin-left: 12px;
+
+    .cyber-collapse-shrink {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      color: @primary-color;
+  
+      .cyber-collapse {
+        transition: all 0.3s linear;
+        font-size: 6px;
+      }
+      &.spread {
+        .cyber-collapse {
+          transform: rotateX(180deg);
+        }
+      }
+      span {
+        white-space: nowrap;
+      }
+    }
+    .collapse-form-search-button {
+      color: @primary-color;
+    }
+  }
+}

@@ -1,0 +1,100 @@
+@import '../../style/theme/index.less';
+
+.cyber-table.ant-table-wrapper {
+  color: #666666;
+  font-size: 12px;
+  font-weight: 400;
+  
+  .ant-table {
+    line-height: 1.5;
+  }
+  .ant-table-cell.ant-table-selection-column {
+    padding-left: 20px;
+  }
+  .ant-table-thead > tr > th,
+  .ant-table-tbody > tr > td,
+  .ant-table tfoot > tr > th,
+  .ant-table tfoot > tr > td {
+    padding: 8px 20px;
+  }
+  .ant-table .ant-table-expanded-row-fixed {
+    margin: -16px -20px;
+  }
+  .ant-table-thead {
+    tr {
+      .ant-table-cell {
+        color: #2D3D48;
+        font-size: 12px;
+        font-weight: 600;
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+  .ant-table-thead > tr,
+  .ant-table-tbody > tr {
+    height: 56px;
+    // hover 样式
+    &.ant-table-row:hover {
+      & > td {
+        background-color: hardlight(@primary-color, #ffffffe6);
+        .cyber-cell.cyber-cell-link,
+        .cyber-cell.cyber-cell-body {
+          .cyber-cell-icon,
+          .cyber-cell-body .cyber-cell-router-link {
+            color: @primary-color;
+          }
+        }
+      }
+    }
+  }
+  .ant-table-selection-col {
+    width: 38px;
+  }
+  .ant-table-row {
+    .cyber-table-drag-handle {
+      margin-right: 10px;
+      color: @primary-color;
+      cursor: grab;
+      &.cyber-table-drag-disabled-handle {
+        cursor: not-allowed;
+        color: #666666;
+      }
+    }
+    &.beforLine {
+      .ant-table-cell{
+        border-top: 1px dashed @primary-color !important;
+      }
+    }
+    &.afterLine {
+      .ant-table-cell {
+        border-bottom: 1px dashed @primary-color !important;
+      }
+    }
+  }
+  .cyber-drag-body {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.cyber-pagination-body {
+  width: 100%;
+  font-weight: 400;
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  .cyber-pagination-left {
+    display: flex;
+    align-items: center;
+    float: left;
+  }
+  .cyber-pagination {
+    float: right;
+  }
+}

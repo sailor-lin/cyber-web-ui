@@ -1,0 +1,98 @@
+@import '../../style/theme/index.less';
+
+.cyber-layout-sidebar {
+  width: 250px;
+  height: 100%;
+  overflow: hidden;
+  padding: 24px 0 16px 30px;
+  transition: all 0.2s linear;
+  .cyber-layout-sidebar-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    border-radius: @border-radius-base;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.06);
+    .cyber-layout-sidebar-search-block {
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: @border-radius-base @border-radius-base 0px 0px;
+      .ant-input-affix-wrapper.cyber-layout-menu-search {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        outline: none;
+        box-shadow: none;
+        .ant-input-prefix {
+          margin-right: 12px;
+        }
+      }
+    }
+    .cyber-layout-menu-ul {
+      width: 100%;
+      height: 0;
+      flex: 1;
+      overflow-x: hidden;
+      overflow-y: auto;
+      border-right: none;
+      border-radius: 0 0 @border-radius-base @border-radius-base;
+    
+      .ant-menu.ant-menu-inline {
+        background: transparent;
+        position: relative;
+        .nav_bar {
+          width: 2px;
+          height: calc(100% - 8px);
+          background: #d9e2eb;
+          border-radius: 0px 0px 0px 0px;
+          position: absolute;
+          top: 50%;
+          transform: translate(0, -50%);
+          z-index: 1;
+        }
+        .ant-menu-item {
+          .action_bar {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            border-right-width: 2px;
+            z-index: 1;
+            border-right: 2px solid #05c059;
+            transform: scaleY(0.0001);
+            opacity: 0;
+            transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1),
+              opacity 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+          }
+          &.ant-menu-item-selected {
+            background: transparent;
+            &::after {
+              display: none;
+            }
+            .action_bar {
+              transform: scaleY(1);
+              opacity: 1;
+              transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+                opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+            }
+          }
+        }
+      }
+      .ant-menu-item .ant-menu-item-icon {
+        max-width: 16px !important;
+        font-size: 16px !important;
+      }
+      .ant-menu-submenu-open.ant-menu-submenu-inline > .ant-menu-submenu-title > .expand-icon {
+        transform: translateY(-2px) rotateX(-180deg);
+        transition: all 0.3s;
+      }
+      .ant-menu-submenu.cyber-menu-submenu-selected {
+        color: @primary-color;
+      }
+    }
+  }
+}

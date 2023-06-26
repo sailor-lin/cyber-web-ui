@@ -1,0 +1,14 @@
+@import './default.less';
+
+.warning-input.ant-input {
+  background-color: @warning-bg-color;
+  border-color: @warning-border-color;
+  color: @error-color;
+  &:hover {
+    border-color: @warning-border-color;
+  }
+  &:focus {
+    border-color: @warning-border-color;
+    box-shadow: 0 0 0 2px rgba(254; 216; 180; 0.2);
+  }
+}

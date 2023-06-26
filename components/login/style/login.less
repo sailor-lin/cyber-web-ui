@@ -1,0 +1,54 @@
+
+.cyber-login-body {
+  width: 420px;
+  min-height: 500px;
+  padding: 30px 30px;
+  border-radius: @border-radius-base;
+  background: #FFFFFF;
+  .cyber-loadin-body-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    margin-bottom: 30px;
+    .cyber-login-logo {
+      height: 36px;
+    }
+  }
+  .cyber-login-tabs .ant-tabs-nav {
+    margin-bottom: 30px;
+    .cyber-login-tab-text {
+      width: 120px;
+      text-align: center;
+    }
+  }
+  .cyber-login-more-login {
+    height: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #BDBDBD;
+  }
+  .cyber-login-extend {
+    display: flex;
+    justify-content: space-between;
+    .cyber-login-tips {
+      color: @error-color;
+    }
+    .cyber-login-extend-action {
+      white-space: nowrap;
+      & > span {
+        cursor: pointer;
+        margin-left: 20px;
+        color: #BDBDBD;
+        white-space: nowrap;
+        &:hover {
+          color: @primary-color;
+        }
+        &:active {
+          color: hardlight(@primary-color, #00000033);
+        }
+      }
+    }
+  }
+}
