@@ -1,0 +1,64 @@
+.g-params {
+  width: 100%;
+  height: 56px;
+  overflow: hidden;
+  padding: 0 20px;
+  &.show {
+    height: auto;
+  }
+  .g-param-item {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    float: left;
+    &:last-child {
+      margin-right: 0 !important;
+    }
+  }
+
+  .g-param-right {
+    float: right;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+    & > * {
+      margin-left: 8px;
+    }
+  }
+  .action-box {
+    // width: 150px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    float: right;
+
+    .shrink {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+  
+      .g-icon.icon.iconfont {
+        transition: all 0.3s linear;
+        font-size: 6px;
+      }
+      &.spread {
+        .g-icon.icon.iconfont {
+          transform: rotateX(180deg);
+        }
+      }
+      span {
+        white-space: nowrap;
+      }
+    }
+    .search-button {
+      margin-left: 10px;
+      cursor: pointer;
+      &.disabled {
+        cursor: not-allowed;
+      }
+    }
+  }
+}
