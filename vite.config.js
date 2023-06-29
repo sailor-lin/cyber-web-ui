@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import theme from './public/theme.js';
 // const { resolve } = require('path');
 
 export default defineConfig({
@@ -14,7 +13,7 @@ export default defineConfig({
 	css: {
 		preprocessorOptions: {
 			less: {
-				modifyVars: theme, // 全局主题色
+				modifyVars: {}, // 全局主题色
 				javascriptEnabled: true,
 			},
 		},
@@ -24,7 +23,7 @@ export default defineConfig({
 		lib: {
 			entry: './components/index.js', //指定组件编译入口文件
 			name: 'CyberWebUi',
-			fileName: 'index',
+			fileName: (format) => `index.${format}.js`
 		},
 		//库编译模式配置
 		rollupOptions: {
@@ -40,5 +39,6 @@ export default defineConfig({
 		},
 		copyPublicDir: true,
 		emptyOutDir: true,
+		sourcemap: process.env.NODE_ENV === "development",
 	},
 });

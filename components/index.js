@@ -3,8 +3,6 @@ import packageJson from '../package.json';
 const version = packageJson.version;
 
 export * from './components';
-
-import './style/iconfont/iconfont.js';
 import './cyber.jsx';
 
 export const install = function (app) {
@@ -15,6 +13,12 @@ export const install = function (app) {
     }
   });
 
+  app.mixin({
+    mounted() {
+      import('./style/iconfont/iconfont.js');
+    },
+  });
+  
   return app;
 };
 

@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import theme from '@/assets/style/theme.js';
+import theme from '@/assets/style/theme/index.js';
 const props = defineProps({
   // 模式 - 按钮颜色
   pattern: {

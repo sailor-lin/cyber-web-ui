@@ -1,5 +1,5 @@
 import { Tag } from 'ant-design-vue';
-import theme from '/public/theme.js'
+import theme from '../style/theme/index.js'
 import { defineComponent, computed } from "vue";
 
 export default defineComponent({
@@ -32,7 +32,7 @@ export default defineComponent({
           {...{...props, ...attrs}}
           v-slots={slots}
         ></Tag>
-      )
-    }
+      );
+    };
   }
 });
