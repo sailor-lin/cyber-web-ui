@@ -1,21 +1,9 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import 'ant-design-vue/dist/antd.less';
-import '@/assets/style/main.less';
-import '@/assets/iconfont/iconfont.css';
-import '@/assets/iconfont/iconfont.js';
-import 'virtual:windi.css';
-import directive from './directive/index.js';
-import { createPinia } from "pinia";
-import piniaPersist from 'pinia-plugin-persist';
-import router from '@/router/index.js';
-import './permission.js';
-// 创建store实例
-const store = createPinia();
-store.use(piniaPersist);
+import { createApp } from 'vue'
+import App from './App.vue'
+import CyberWebUi from '../components/index.js';
+import '../components/cyber.jsx';
+// import CyberWebUi from 'sailor-ui-test';
+// import 'sailor-ui-test/lib/style.css';
+console.log("??", CyberWebUi)
 
-createApp(App)
-.use(directive)
-.use(store)
-.use(router)
-.mount('#app');
+createApp(App).use(CyberWebUi).mount('#app');

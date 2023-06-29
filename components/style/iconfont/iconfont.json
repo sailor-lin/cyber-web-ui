@@ -1,0 +1,107 @@
+{
+  "id": "4140948",
+  "name": "cyber-web-ui",
+  "font_family": "iconfont",
+  "css_prefix_text": "cyber-",
+  "description": "cyber-web-ui项目图标",
+  "glyphs": [
+    {
+      "icon_id": "9138963",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "14203627",
+      "name": "成功",
+      "font_class": "chenggong",
+      "unicode": "e7b3",
+      "unicode_decimal": 59315
+    },
+    {
+      "icon_id": "16163369",
+      "name": "失败",
+      "font_class": "shibai",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
+      "icon_id": "34884685",
+      "name": "操作",
+      "font_class": "caozuo",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "34909050",
+      "name": "路径",
+      "font_class": "xiajiantou",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "35049303",
+      "name": "路径 (5)",
+      "font_class": "jinggao",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "35049334",
+      "name": "显示密码",
+      "font_class": "xianshimima",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "35049335",
+      "name": "隐藏密码",
+      "font_class": "yincangmima",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "35114920",
+      "name": "新建",
+      "font_class": "xinjian",
+      "unicode": "e649",
+      "unicode_decimal": 58953
+    },
+    {
+      "icon_id": "35114922",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "35114924",
+      "name": "编辑",
+      "font_class": "bianji",
+      "unicode": "e64f",
+      "unicode_decimal": 58959
+    },
+    {
+      "icon_id": "35558792",
+      "name": "Icon_Plus_24",
+      "font_class": "plus",
+      "unicode": "e676",
+      "unicode_decimal": 58998
+    },
+    {
+      "icon_id": "35558793",
+      "name": "Icon_Reduce_24",
+      "font_class": "reduce",
+      "unicode": "e677",
+      "unicode_decimal": 58999
+    },
+    {
+      "icon_id": "35919191",
+      "name": "Vector (6)",
+      "font_class": "vector",
+      "unicode": "e694",
+      "unicode_decimal": 59028
+    }
+  ]
+}

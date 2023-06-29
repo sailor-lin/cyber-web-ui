@@ -1,0 +1,66 @@
+@import '/public/mixins.less';
+
+@keyframes waveEffect {
+  100% {
+    box-shadow: 0 0 0 @primary-color;
+    box-shadow: 0 0 0 6px rgb(45, 61, 72);
+  }
+}
+@keyframes fadeEffect {
+  100% {
+    opacity: 0;
+  }
+}
+
+.g-switch-control {
+  .main-body-deepen();
+  display: flex;
+  align-items: center;
+  display: inline-flex;
+  padding: 4px 4px 4px 16px;
+  background: #F4F6F9;
+  border-radius: 1920px;
+  cursor: pointer;
+  user-select: none;
+  transition: all .2s;
+  position: relative;
+  border: none;
+  .circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: @dark-color;
+    margin-left: 8px;
+  }
+  .switch-control-click-animating {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    border-radius: inherit;
+    box-shadow: 0 0 0 0 #05c059;
+    box-shadow: 0 0 0 0 rgb(45, 61, 72);
+    opacity: 0.2;
+    animation: fadeEffect 2s cubic-bezier(0.08, 0.82, 0.17, 1), waveEffect 0.4s cubic-bezier(0.08, 0.82, 0.17, 1);
+    animation-fill-mode: forwards;
+    content: '';
+    pointer-events: none;
+  }
+  &.active {
+    .main-body-deepen();
+    background: @primary-color;
+    .circle {
+      background: #FFFFFF;
+    }
+  }
+  &.g-switch-control-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  &:focus {
+    outline: 0;
+    box-shadow: @box-shadow-base;
+  }
+}

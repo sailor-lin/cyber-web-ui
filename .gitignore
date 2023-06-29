@@ -10,8 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-dist.rar
-dist.zip
+lib
 *.local
 
 # Editor directories and files
@@ -24,5 +23,3 @@ dist.zip
 *.njsproj
 *.sln
 *.sw?
-components.d.ts
-auto-imports.d.ts
