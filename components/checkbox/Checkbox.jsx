@@ -1,5 +1,6 @@
 import { defineComponent } from "vue";
 import { Checkbox } from 'ant-design-vue';
+import './style/checkbox.less';
 
 export default defineComponent({
   name: "GCheckbox",

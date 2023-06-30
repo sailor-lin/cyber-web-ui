@@ -2,6 +2,7 @@ import Icon from '../icon/Icon.jsx';
 import { Select, SelectOption, Tag } from 'ant-design-vue';
 import { defineComponent, computed, reactive } from 'vue';
 import { filterEmpty } from "../_utils/index.js";
+import './style/select.less';
 
 export default defineComponent({
   name: "GSelect",

@@ -1,8 +1,7 @@
-import GButton from '@/components/global/button/g-button.vue';
-import GIcon from '@/components/global/icon/g-icon.jsx';
-import { Modal, message } from 'ant-design-vue';
+import Icon from '../icon/Icon.jsx';
+import { Modal, Button, message } from 'ant-design-vue';
 import { watch, defineComponent, computed, reactive, createVNode, render as vueRender } from 'vue';
-import './g-modal.less';
+import './style/modal.less';
 
 // 自定义弹窗
 const GModal = defineComponent({
@@ -157,24 +156,24 @@ const GModal = defineComponent({
                           <>
                             {
                               props?.showCancel
-                              ? <GButton
+                              ? <Button
                                   type="ghost"
                                   onClick={() => methods.isClose(props.onCancel)}
                                   pattern="primary"
                                   {...props.cancelButtonProps}
                                 >
                                   { slots?.cancelText || props.cancelText }
-                                </GButton>
+                                </Button>
                               : ''
                             }
-                            <GButton
+                            <Button
                               type="primary"
                               loading={!modalState.visible || modalState.loading}
                               onClick={methods.confirm}
                               {...props.okButtonProps}
                             >
                               { slots?.okText || props.okText }
-                            </GButton>
+                            </Button>
                           </>
                         )
                     }
@@ -186,7 +185,7 @@ const GModal = defineComponent({
         ),
         closeIcon: () => (
           <>
-            { slots?.closeIcon?.() || <GIcon isSvg icon="icon-guanbi" size="14"></GIcon> }
+            { slots?.closeIcon?.() || <Icon isSvg icon="icon-guanbi" size="14"></Icon> }
           </>
         ),
         title: () => {
@@ -195,7 +194,7 @@ const GModal = defineComponent({
           } else if(props.icon) {
             return (
               <>
-                <GIcon icon={props.icon} size="16" style="margin-right: 12px;" {...props.iconProps}></GIcon>
+                <Icon icon={props.icon} size="16" style="margin-right: 12px;" {...props.iconProps}></Icon>
                 <span>{props.title}</span>
               </>
             );

@@ -1,4 +1,5 @@
 import { defineComponent } from "vue";
+import './style/step.less';
 
 export default defineComponent({
   name: "GStep",

@@ -1,6 +1,7 @@
 import Icon from '../icon/Icon.jsx';
 import { defineComponent, cloneVNode } from "vue";
 import { filterEmpty } from "../_utils/index.js";
+import './style/steps.less';
 
 export default defineComponent({
   name: "GSteps",

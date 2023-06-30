@@ -1,4 +1,5 @@
 import { defineComponent, computed } from "vue";
+import './style/icon.less';
 
 export default defineComponent({
   name: "GIcon",
@@ -22,12 +23,6 @@ export default defineComponent({
     isSvg: {
       type: Boolean,
       default: false
-    },
-    // 模式 - 按钮颜色
-    pattern: {
-      type: String,
-      default: 'dark',
-      validator: (value) => ["", "primary", "dark", "warning", "error", "gray", "classic"].includes(value),
     },
   },
   setup(props, { attrs, slots, emit, expose }) {

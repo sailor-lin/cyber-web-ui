@@ -2,8 +2,8 @@ import * as components from './components.js';
 import packageJson from '../package.json';
 const version = packageJson.version;
 
+import './cyber.less';
 export * from './components';
-import './cyber.jsx';
 
 export const install = function (app) {
   Object.keys(components).forEach(key => {
