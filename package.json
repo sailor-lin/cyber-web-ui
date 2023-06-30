@@ -23,6 +23,7 @@
     "less": "^4.1.3",
     "less-loader": "^11.0.0",
     "sailor-ui-test": "^0.0.7",
+    "unplugin-vue-components": "^0.21.1",
     "vue": "^3.2.37"
   },
   "devDependencies": {

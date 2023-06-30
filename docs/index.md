@@ -15,7 +15,7 @@ hero:
   actions:
     - theme: brand
       text: 开始
-      link: /guide/
+      link: /reference/
     - theme: alt
       text: Github地址
       link: https://github.com/spring-cyber/cyber-web-ui

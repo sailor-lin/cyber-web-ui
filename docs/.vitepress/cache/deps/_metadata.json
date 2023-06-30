@@ -1,27 +1,42 @@
 {
-  "hash": "dadf9e38",
-  "browserHash": "81b31fba",
+  "hash": "e8779ed3",
+  "browserHash": "bb5ac29c",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "5b644fc9",
+      "fileHash": "80a03c64",
       "needsInterop": false
     },
     "@vitepress-demo-preview/component": {
       "src": "../../../../node_modules/@vitepress-demo-preview/component/dist/preview-component.js",
       "file": "@vitepress-demo-preview_component.js",
-      "fileHash": "e80ee256",
+      "fileHash": "9acd0ec5",
       "needsInterop": false
     },
     "ant-design-vue": {
       "src": "../../../../node_modules/ant-design-vue/es/index.js",
       "file": "ant-design-vue.js",
-      "fileHash": "7ee1f070",
+      "fileHash": "a22211df",
+      "needsInterop": false
+    },
+    "ant-design-vue/es": {
+      "src": "../../../../node_modules/ant-design-vue/es/index.js",
+      "file": "ant-design-vue_es.js",
+      "fileHash": "a840338c",
+      "needsInterop": false
+    },
+    "ant-design-vue/es/avatar/style/css": {
+      "src": "../../../../node_modules/ant-design-vue/es/avatar/style/css.js",
+      "file": "ant-design-vue_es_avatar_style_css.js",
+      "fileHash": "0c906c39",
       "needsInterop": false
     }
   },
   "chunks": {
+    "chunk-76HLSWU2": {
+      "file": "chunk-76HLSWU2.js"
+    },
     "chunk-3HV43HOE": {
       "file": "chunk-3HV43HOE.js"
     }

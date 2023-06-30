@@ -1,5 +1,5 @@
 import { Tag } from 'ant-design-vue';
-import theme from '../style/theme/index.js'
+import theme from '../../public/theme.js'
 import { defineComponent, computed } from "vue";
 
 export default defineComponent({

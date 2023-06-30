@@ -1,36 +1,43 @@
-import { Badge } from 'ant-design-vue';
-import theme from '../style/theme/index.js'
+import theme from '../../public/theme.js'
 import { defineComponent, computed } from "vue";
+import { Badge } from 'ant-design-vue';
 
 export default defineComponent({
   name: "GBadge",
   props: {
-    dot: {
-      type: Boolean,
-      default: false,
+    numberStyle: {
+      type: Object,
+      default: () => {},
     },
     // 模式 - 按钮颜色
     pattern: {
       type: String,
-      default: 'error',
-      validator: (value) => ["", "primary", "dark", "warning", "error", "gray", "classic"].includes(value),
+      default: '',
+      validator: (value) => ["", "primary", "warning", "error", "dark", "gray", "classic"].includes(value),
     },
   },
-  setup(props, { attrs, emit, expose, slots }) {
-    const color = computed(() => {
-      return theme[`${props.pattern}-color`];
+  setup(props, { attrs, slots, emit, expose }) {
+    const numberStyle = computed(() => {
+      let obj = {};
+      if(!props.numberStyle?.backgroundColor) {
+        obj.backgroundColor = theme[`${props.pattern}-color`];
+      }
+      
+      return {
+        ...props.numberStyle || {},
+        ...obj,
+      };
     });
-
+    
     return () => {
       return (
         <Badge
           class="g-badge"
-          color={color.value}
           {...{...props, ...attrs}}
-        >
-          { slots.default?.() }
-        </Badge>
-      )
-    }
-  }
+          numberStyle={numberStyle.value}
+          v-slots={slots}
+        ></Badge>
+      );
+    };
+  },
 });

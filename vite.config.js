@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import theme from './public/theme';
 // const { resolve } = require('path');
 
 export default defineConfig({
@@ -13,7 +14,7 @@ export default defineConfig({
 	css: {
 		preprocessorOptions: {
 			less: {
-				modifyVars: {}, // 全局主题色
+				modifyVars: theme, // 全局主题色
 				javascriptEnabled: true,
 			},
 		},
