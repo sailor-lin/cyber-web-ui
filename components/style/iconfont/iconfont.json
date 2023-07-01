@@ -6,6 +6,13 @@
   "description": "cyber-web-ui项目图标",
   "glyphs": [
     {
+      "icon_id": "35870974",
+      "name": "Frame",
+      "font_class": "close",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
       "icon_id": "9138963",
       "name": "搜索",
       "font_class": "sousuo",

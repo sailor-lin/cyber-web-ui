@@ -1,7 +1,6 @@
 import Icon from '../icon/Icon.jsx';
-import { defineComponent, cloneVNode } from "vue";
+import { defineComponent, cloneVNode, h } from "vue";
 import { filterEmpty } from "../_utils/index.js";
-import './style/steps.less';
 
 export default defineComponent({
   name: "GSteps",
@@ -28,7 +27,7 @@ export default defineComponent({
                     stepText: props.current > index 
                       ? () => h(Icon, {
                           isSvg: true,
-                          icon: "icon-a-Vector6",
+                          icon: "cyber-vector",
                           size: "8",
                         })
                       : child.props?.stepText || index + 1 + '',

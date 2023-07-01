@@ -1,7 +1,6 @@
 import Icon from '../icon/Icon.jsx';
 import { Modal, Button, message } from 'ant-design-vue';
 import { watch, defineComponent, computed, reactive, createVNode, render as vueRender } from 'vue';
-import './style/modal.less';
 
 // 自定义弹窗
 const GModal = defineComponent({
@@ -185,7 +184,7 @@ const GModal = defineComponent({
         ),
         closeIcon: () => (
           <>
-            { slots?.closeIcon?.() || <Icon isSvg icon="icon-guanbi" size="14"></Icon> }
+            { slots?.closeIcon?.() || <Icon isSvg icon="cyber-close" size="14"></Icon> }
           </>
         ),
         title: () => {

@@ -1,4 +1,5 @@
-@import '../../style/mixins/index.less';
+@import '../../style/theme/index.less';
+
 .g-step {
   display: inline-flex;
   align-items: center;
@@ -8,16 +9,16 @@
   color: #8F99B5;
     
   .g-step-icon {
-    .number();
     width: 18px;
     height: 18px;
+    font-family: @oswald;
     border-radius: 50%;
     overflow: hidden;
     color: #F1F5F9;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    background: rgba(5, 192, 89, 0.4);
+    background: fade(@primary-color, 40%);
     margin-right: 6px;
   }
   .g-step-title {

@@ -1,5 +1,4 @@
 import { defineComponent, computed } from "vue";
-import './style/icon.less';
 
 export default defineComponent({
   name: "GIcon",

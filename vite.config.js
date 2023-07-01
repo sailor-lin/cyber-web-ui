@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-// const { resolve } = require('path');
+import esBuild from './cyber-tools/es-build.js';
 
 export default defineConfig({
   plugins: [
@@ -9,6 +9,7 @@ export default defineConfig({
 		vueJsx({
 			transformOn: true,
 		}),
+		esBuild(),
 	],
 	css: {
 		preprocessorOptions: {
@@ -19,14 +20,15 @@ export default defineConfig({
 		},
 	},
 	server: {
-		host: "0.0.0.0",
+		host: true,
 		hmr: true,
 	},
   build: {
-		outDir: 'lib',
+		outDir: 'dist',
 		lib: {
 			entry: './components/index.js', //指定组件编译入口文件
 			name: 'CyberWebUi',
+			// formats: ['umd'],
 			fileName: (format) => `index.${format}.js`
 		},
 		//库编译模式配置
@@ -41,7 +43,7 @@ export default defineConfig({
 				exports: "named",
 			},
 		},
-		copyPublicDir: true,
+		copyPublicDir: false,
 		emptyOutDir: true,
 	},
 });

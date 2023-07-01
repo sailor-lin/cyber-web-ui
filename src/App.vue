@@ -1,30 +1,23 @@
 <template>
-  <div>
-    <g-select :options="options.select" width="160" allowClear mode="tags"
-      :maxTagTextLength="2" :maxTagCount="1"
-    ></g-select>
-    <g-select :options="options.select" addonBefore="??"></g-select>
-    <g-select :options="options.select" shape="round" width="200px"></g-select>
-  </div>
-  <div>
-    <g-steps>
+  <Card title="steps">
+    <g-steps v-model:current="state.current">
       <g-step title="步骤1"></g-step>
       <g-step title="步骤2"></g-step>
       <g-step title="步骤3"></g-step>
       <g-step title="步骤4"></g-step>
       <g-step title="步骤5"></g-step>
     </g-steps>
-  </div>
-  <div>
-    <g-checkbox>123456</g-checkbox>
+  </Card>
+  <Card title="switch">
     <g-switch-control v-model:checked="state.switchControl"
       checkedValue="1" unCheckedValue="2" @change="methods.changeSwitchControl"
     >开关</g-switch-control>
-  </div>
+  </Card>
 </template>
 
 <script setup>
 import { reactive, ref, computed } from 'vue';
+import Card from './components/Card.vue';
 const options = {
   select: [
     { label: '1', value: '1' },
@@ -35,6 +28,7 @@ const options = {
   ]
 };
 const state = reactive({
+  current: 2,
   switchControl: true,
 });
 const methods = {

@@ -1,5 +1,4 @@
 import { defineComponent, ref, computed, watch } from "vue";
-import './style/switch-control.less';
 
 export default defineComponent({
   name: "GSwitchControl",
