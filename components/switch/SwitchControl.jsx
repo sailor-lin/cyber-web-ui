@@ -1,7 +1,7 @@
 import { defineComponent, ref, computed, watch } from "vue";
 
 export default defineComponent({
-  name: "GSwitchControl",
+  name: "CSwitchControl",
   props: {
     // 是否选中
     checked: {

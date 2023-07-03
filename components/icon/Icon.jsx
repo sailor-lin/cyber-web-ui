@@ -1,7 +1,7 @@
 import { defineComponent, computed } from "vue";
 
 export default defineComponent({
-  name: "GIcon",
+  name: "CIcon",
   props: {
     // 图标标识
     icon: {

@@ -1,7 +1,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "GStep",
+  name: "CStep",
   props: {
     // 标题
     title: {

@@ -3,7 +3,7 @@ import { defineComponent, cloneVNode, h } from "vue";
 import { filterEmpty } from "../_utils/index.js";
 
 export default defineComponent({
-  name: "GSteps",
+  name: "CSteps",
   props: {
     // 当前active项
     current: {

@@ -4,7 +4,7 @@ import { watch, defineComponent, computed, reactive, createVNode, render as vueR
 
 // 自定义弹窗
 const GModal = defineComponent({
-  name: "GModal",
+  name: "CModal",
   props: {
     // 标题
     title: {
