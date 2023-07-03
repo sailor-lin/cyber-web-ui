@@ -39,14 +39,14 @@ export default defineComponent({
       return props.isSvg
         // svg图标
         ? <svg
-            class="g-svg-icon icon svg-icon"
+            class="cyber-svg-icon icon svg-icon"
             style={{ fontSize: size.value, minWidth: size.value }}
           >
             <use xlink:href={`#${props.icon}`}></use>
           </svg>
         // 字体图标
         : <span
-            class={['g-icon icon iconfont', props.icon].join(' ')}
+            class={['cyber-icon icon iconfont', props.icon].join(' ')}
             style={{fontSize: size.value}}
           >
             { slots.default?.() }

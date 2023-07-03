@@ -17,7 +17,7 @@ export default defineComponent({
         ...slots,
         default: () => {
           return filterEmpty(slots.default?.() || []).filter(child => {
-            return child.type.name == "GStep";
+            return child.type.name == "CStep";
           }).map((child, index, list) => {
             return (
               <>
@@ -35,7 +35,7 @@ export default defineComponent({
                 }
                 {
                   index < list.length - 1
-                    ? <div class="g-step-separate"></div>
+                    ? <div class="cyber-step-separate"></div>
                     : undefined
                 }
               </>
@@ -44,7 +44,7 @@ export default defineComponent({
         }
       }
       return (
-        <div class="g-steps">
+        <div class="cyber-steps">
           { customSlots.default() }
         </div>
       )

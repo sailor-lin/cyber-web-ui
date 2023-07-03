@@ -32,9 +32,9 @@ export default defineComponent({
         },
       }
       return (
-        <div class={['g-step', props.active ? 'g-step-active' : ''].join(' ')}>
-          <div class="g-step-icon">{ customSlots.stepText() }</div>
-          <div class="g-step-title">{ customSlots.default() }</div>
+        <div class={['cyber-step', props.active ? 'cyber-step-active' : ''].join(' ')}>
+          <div class="cyber-step-icon">{ customSlots.stepText() }</div>
+          <div class="cyber-step-title">{ customSlots.default() }</div>
         </div>
       )
     };

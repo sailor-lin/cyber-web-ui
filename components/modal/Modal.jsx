@@ -206,8 +206,8 @@ const GModal = defineComponent({
       return (
         <Modal
           class={[
-            'g-modal',
-            props.large ? 'g-large-modal' : '',
+            'cyber-modal',
+            props.large ? 'cyber-large-modal' : '',
             props.footer ? '' : 'hidden-footer'
           ].join(' ')}
           maskClosable={false}

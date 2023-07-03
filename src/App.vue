@@ -1,17 +1,17 @@
 <template>
   <Card title="steps">
-    <g-steps v-model:current="state.current">
-      <g-step title="步骤1"></g-step>
-      <g-step title="步骤2"></g-step>
-      <g-step title="步骤3"></g-step>
-      <g-step title="步骤4"></g-step>
-      <g-step title="步骤5"></g-step>
-    </g-steps>
+    <c-steps v-model:current="state.current">
+      <c-step title="步骤1"></c-step>
+      <c-step title="步骤2"></c-step>
+      <c-step title="步骤3"></c-step>
+      <c-step title="步骤4"></c-step>
+      <c-step title="步骤5"></c-step>
+    </c-steps>
   </Card>
   <Card title="switch">
-    <g-switch-control v-model:checked="state.switchControl"
+    <c-switch-control v-model:checked="state.switchControl"
       checkedValue="1" unCheckedValue="2" @change="methods.changeSwitchControl"
-    >开关</g-switch-control>
+    >开关</c-switch-control>
   </Card>
 </template>
 

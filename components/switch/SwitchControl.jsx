@@ -53,7 +53,7 @@ export default defineComponent({
     return () => {
       return (
         <button
-          class={['g-switch-control', { 'active': checkedStatus.value }, { 'g-switch-control-disabled': props.disabled }]}
+          class={['cyber-switch-control', { 'active': checkedStatus.value }, { 'cyber-switch-control-disabled': props.disabled }]}
           onClick={methods.clickHandler}
         >
           { slots.default?.() }
