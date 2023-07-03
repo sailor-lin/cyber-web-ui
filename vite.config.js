@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import esBuild from './cyber-tools/es-build.js';
+import EsBuild from './cyber-tools/es-build.js';
 
 export default defineConfig({
   plugins: [
@@ -9,7 +9,7 @@ export default defineConfig({
 		vueJsx({
 			transformOn: true,
 		}),
-		esBuild(),
+		EsBuild(),
 	],
 	css: {
 		preprocessorOptions: {
