@@ -1,8 +1,8 @@
+import Icon from '../icon/index.jsx';
+import { Input as AInput } from "ant-design-vue";
 import bigjs from '../_utils/big/index.js';
 import { inputFormat } from '../_utils/formatter.js';
-import { reactive, defineComponent, computed, watch, nextTick } from "vue";
-import { Input as AInput } from "ant-design-vue";
-import Icon from '../icon/index.jsx';
+import { reactive, defineComponent, computed, watch } from "vue";
 
 const InputNumber = defineComponent({
   name: 'CInputNumber',
