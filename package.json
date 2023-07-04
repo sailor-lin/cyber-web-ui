@@ -1,7 +1,7 @@
 {
-  "name": "cyber-web-ui",
+  "name": "sailor-ui-test",
   "private": false,
-  "version": "1.0.0",
+  "version": "0.0.18",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
   "description": "spring-cyber前端ui框架",

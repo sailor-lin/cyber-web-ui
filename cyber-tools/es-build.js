@@ -8,6 +8,7 @@ export default () => {
       let copyInstance = copy({
         targets: [
           { src: 'components/**/*.less', dest: 'lib' },
+          { src: 'components/style/iconfont/*', dest: 'lib' },
         ],
         hook: 'buildEnd',
         flatten: false,
