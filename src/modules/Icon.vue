@@ -1,5 +1,5 @@
 <template>
-  <Card title="steps">
+  <Card title="icon">
     <div>
       <c-icon icon="cyber-close" size="16px"></c-icon>
       <c-icon icon="cyber-sousuo" size="16px"></c-icon>

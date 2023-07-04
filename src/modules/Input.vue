@@ -1,8 +1,10 @@
 <template>
-  <Card title="switch">
-    <c-switch-control v-model:checked="state.switchControl"
-      checkedValue="1" unCheckedValue="2" @change="methods.changeSwitchControl"
-    >开关</c-switch-control>
+  <Card title="input">
+    <div style="display: flex; align-items: center;">
+      <span>必填：</span>
+      <c-input-number v-model:value="state.value1" required style="width: 160px;"></c-input-number>
+      <c-input-number v-model:value="state.value2" addonBefore="前缀" addonAfter="后缀" style="width: 200px;"></c-input-number>
+    </div>
   </Card>
 </template>
 
@@ -10,7 +12,8 @@
 import { reactive } from 'vue';
 import Card from '../components/Card.vue';
 const state = reactive({
-  switchControl: '1',
+  value1: undefined,
+  value2: undefined,
 });
 const methods = {
   changeSwitchControl(checked) {
