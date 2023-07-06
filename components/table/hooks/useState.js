@@ -236,9 +236,20 @@ export const useTableState = (props, { emit }) => {
       tableState.total = props.total;
     }
   });
-  watchEffect(() => tableState.dataSource = props.dataSource || []);
   watchEffect(() => {
-    tableState.checkedAll = tableState.selectedRowKeys.length == tableState.dataSource?.length;
+    tableState.dataSource = props.dataSource || [];
+    tableState.selectedRowKeys = [];
+    tableState.selectedRows = [];
+  });
+  watchEffect(() => {
+    if(!tableState.selectedRowKeys?.length) {
+      tableState.checkedAll = false;
+      return;
+    }
+    let selectedSet = new Set(tableState.selectedRowKeys);
+    tableState.checkedAll = (tableState.dataSource || []).every(item => {
+      return selectedSet.has(item[props.rowKey]);
+    });
   });
 
   return {

@@ -72,6 +72,13 @@ const Modal = defineComponent({
     },
   },
   setup(props, { attrs, emit, expose, slots }) {
+    const customProps = computed(() => {
+      return {
+        ...props,
+        ...attrs,
+        title: undefined,
+      };
+    });
     const modalState = reactive({
       visible: false,
       loading: false,
@@ -177,7 +184,7 @@ const Modal = defineComponent({
         ),
         closeIcon: () => (
           <>
-            { slots?.closeIcon?.() || <Icon isSvg icon="icon-guanbi" size="14"></Icon> }
+            { slots?.closeIcon?.() || <Icon isSvg icon="cyber-close" size="14"></Icon> }
           </>
         ),
         title: () => {
@@ -205,12 +212,8 @@ const Modal = defineComponent({
           ].join(' ')}
           maskClosable={false}
           maskStyle={modalState.maskStyle}
-          {...{
-            ...props,
-            ...attrs,
-            title: undefined,
-          }}
           v-slots={customSlots}
+          {...customProps}
           onCancel={() => {
             methods.isClose(props.onCancel);
           }}
@@ -235,7 +238,7 @@ Modal.confirm = (config) => {
     : () => config.content;
 
   function render(props) {
-    const vm = createVNode(GModal, { ...props }, children);
+    const vm = createVNode(Modal, { ...props }, children);
     vueRender(vm, container);
     return vm;
   }
@@ -245,7 +248,7 @@ Modal.confirm = (config) => {
 
 // 提示信息弹窗 - 方法
 Modal.info = (config) => {
-  GModal.confirm({
+  Modal.confirm({
     ...config,
     showCancel: false,
     okButtonProps: {

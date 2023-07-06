@@ -7,6 +7,7 @@
       :current="tableState.page"
       :pageSize="tableState.pageSize"
       :total="tableState.total"
+      :action="false"
     ></c-table>
   </Card>
   <Card title="table-wrapper" style="padding: 24px 0 0;">
@@ -20,6 +21,9 @@
       :columns="tableState.columns"
       :paginationProps="{
         pageSizeOptions: ['1', '2', '3'],
+      }"
+      :rowSelection="{
+        show: true,
       }"
       @search="methods.searchQuery"
       @paginationChange="methods.searchQuery"
