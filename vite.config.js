@@ -22,6 +22,15 @@ export default defineConfig({
 	server: {
 		host: true,
 		hmr: true,
+		proxy: {
+			"/gateway": {
+				target: "http://192.168.0.226:8080",
+				changeOrigin: true, 
+				rewrite: (path) => {
+					return path.replace(/\/gateway/, "");
+				},
+			},
+		},
 	},
   build: {
 		outDir: 'dist',

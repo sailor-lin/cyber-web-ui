@@ -1,0 +1,72 @@
+
+.cyber-table.ant-table-wrapper {
+  color: #666666;
+  font-size: 12px;
+  font-weight: 400;
+  
+  .ant-table {
+    line-height: 1.5;
+  }
+  .ant-table-cell.ant-table-selection-column {
+    padding-left: 20px;
+  }
+  // 修改表格内边距
+  .ant-table-thead > tr > th {
+    padding: 19px 20px;
+  }
+  .ant-table-tbody > tr > td,
+  .ant-table tfoot > tr > th,
+  .ant-table tfoot > tr > td {
+    padding: 8px 20px;
+  }
+  .ant-table .ant-table-expanded-row-fixed {
+    margin: -16px -20px;
+  }
+  .ant-table-thead {
+    tr {
+      .ant-table-cell {
+        color: #2D3D48;
+        font-size: 12px;
+        font-weight: 600;
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+  // hover样式
+  .ant-table-tbody {
+    & > tr.ant-table-row:hover {
+      & > td {
+        background-color: hardlight(@primary-color, #ffffffe6);;
+        .g-cell-router-link {
+          color: @primary-color;
+        }
+      }
+    }
+  }
+  .ant-table-selection-col {
+    width: 38px;
+  }
+}
+
+.cyber-pagination-body {
+  width: 100%;
+  background-color: #fafbfc;
+  padding: 12px 20px;
+  font-weight: 400;
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  .cyber-pagination-left {
+    display: flex;
+    align-items: center;
+    float: left;
+  }
+  .cyber-pagination {
+    float: right;
+  }
+}

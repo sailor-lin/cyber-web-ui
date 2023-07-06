@@ -1,0 +1,55 @@
+.cyber-select {
+  display: inline-block;
+  background-color: #fff;
+  border: 1px solid @border-color-base;
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  .cyber-select-label {
+    display: inline-block;
+    white-space: nowrap;
+    padding: 0 12px;
+    border-right: 1px solid @border-color-base;
+    line-height: 32px;
+    background: #F4F6F9;
+  }
+  &.cyber-select-group .ant-select,
+  &.ant-select {
+    .ant-select-selector {
+      border: none !important;
+    }
+    // 箭头样式
+    .ant-select-arrow {
+      margin-top: 0;
+      width: auto;
+      height: auto;
+      transform: translateY(-50%);
+    }
+    // 翻转箭头
+    &.cyber-select-arrow-turn {
+      .ant-select-arrow {
+        transition: all 0.3s linear;
+        transform: translateY(-50%) rotateX(0deg);
+      }
+      &.ant-select-open {
+        .ant-select-arrow {
+          transform: translateY(-50%) rotateX(180deg);
+        }
+      }
+    }
+    &.ant-select-single:not(.ant-select-customize-input) {
+      .ant-select-selector {
+        .ant-select-selection-search-input {
+          height: 32px;
+        }
+      }
+    } 
+  }
+  // 圆角
+  &.cyber-select-round.ant-select {
+    border-radius: 100px;
+    .ant-select-selector {
+      border-radius: 100px;
+      background-color: #F5F7FA;
+    }
+  }
+}

@@ -109,9 +109,9 @@ const collapseForm = defineComponent({
           ]}
           ref="collapseRef"
         >
-            { customSlots.right() }
-            { customSlots.controls() }
-            { customSlots.default() }
+          { customSlots.right() }
+          { customSlots.controls() }
+          { customSlots.default() }
         </div>
       );
     };
