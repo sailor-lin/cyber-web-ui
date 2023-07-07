@@ -13,6 +13,7 @@
   <Card title="table-wrapper" style="padding: 24px 0 0;">
     <c-table-wrapper
       ref="tableRef"
+      rowKey="id"
       v-model:loading="tableState.loading"
       v-model:current="tableState.page"
       :dataSource="tableState.dataSource"
@@ -22,11 +23,10 @@
       :paginationProps="{
         pageSizeOptions: ['1', '2', '3'],
       }"
-      :rowSelection="{
-        show: true,
-      }"
+      showRowSelection
       @search="methods.searchQuery"
       @paginationChange="methods.searchQuery"
+      @batchDelete="methods.batchDelete"
     >
       <template #collapse>
         <AInput></AInput>
@@ -55,8 +55,8 @@
 
 <script setup>
 import axios from '../api';
-import { reactive, ref, unref, onMounted } from 'vue';
-import { Input as AInput, Button as AButton } from 'ant-design-vue';
+import { reactive, ref, unref, onMounted, watchEffect } from 'vue';
+import { Input as AInput, Table as ATable, Button as AButton } from 'ant-design-vue';
 import Card from '../components/Card.vue';
 const tableRef = ref();
 const tableState = reactive({
@@ -74,7 +74,8 @@ const tableState = reactive({
       dataIndex: 'name',
     },
   ],
-  dataSource: []
+  dataSource: [],
+  selectedRowKeys: [],
 });
 const methods = {
   async searchQuery() {
@@ -106,7 +107,18 @@ const methods = {
     };
     tableState.loading = false;
   },
+  onChange(list) {
+    console.log("!??")
+    tableState.selectedRowKeys = list;
+  },
+  batchDelete(list) {
+    console.log('batchDelete', list)
+  }
 };
+
+watchEffect(() => {
+  console.log("??", tableState.selectedRowKeys)
+});
 
 onMounted(() => {
   methods.searchQuery();

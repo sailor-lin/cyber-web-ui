@@ -1,4 +1,4 @@
-import { watchEffect, getCurrentInstance, reactive, computed, h } from 'vue';
+import { watchEffect, getCurrentInstance, reactive, computed, h, watch } from 'vue';
 import { changeHistoryState, initHistoryState } from "../../_utils/history.js";
 
 /**
@@ -53,28 +53,35 @@ export const usePagination = (paginationProps = {}) => {
 
 /**
  * @function 选择功能配置
- * @param {object} rowSelectionProps 选择功能参数
- * @param {object} tableState 表格状态
+ * @param {object} props
+ * @param {object} selectionState
  * @returns {object|null}
  */
-export const useSelection = (rowSelectionProps, tableState) => {
-  if(!rowSelectionProps?.show) return null;
-  return {
-    selectedRowKeys: tableState.selectedRowKeys,
+export const useSelection = (props, selectionState) => {
+  let onChange = (selectedRowKeys, selectedRows) => {
+    selectionState.selectedRowKeys = selectedRowKeys;
+    selectionState.selectedRows = selectedRows;
+  }
+  if(props.rowSelection) {
+    return {
+      onChange: props.rowSelection?.selectedRowKeys ? undefined : onChange,
+      ...props.rowSelection,
+      selectedRowKeys: props.rowSelection?.selectedRowKeys
+        ? props.rowSelection?.selectedRowKeys
+        : selectionState.selectedRowKeys,
+      hideSelectAll: true,
+      hideDefaultSelections: true,
+      checkedAll: selectionState.checkedAll,
+    }
+  }
+  if(!props?.showRowSelection) return null;
+  return { // 去掉『全选』『反选』两个默认选项
     type: "checkbox",
-    hideDefaultSelections: true, // 去掉『全选』『反选』两个默认选项
-    onChange: (selectedRowKeys, selectedRows) => {
-      tableState.selectedRowKeys = selectedRowKeys;
-      tableState.selectedRows = selectedRows;
-    },
-    // onSelect: (record, selected, selectedRows) => {
-    //   console.log(record, selected, selectedRows);
-    // },
-    // onSelectAll: (selected, selectedRows, changeRows) => {
-    //   console.log(selected, selectedRows, changeRows);
-    // },
-    ...(rowSelectionProps || {}),
+    selectedRowKeys: selectionState.selectedRowKeys,
+    onChange,
     hideSelectAll: true, // 隐藏全选勾选框与自定义选择项
+    hideDefaultSelections: true,
+    checkedAll: selectionState.checkedAll,
   }
 };
 
@@ -82,15 +89,14 @@ export const useSelection = (rowSelectionProps, tableState) => {
  * @function 初始化表格状态
  * @param {object} props 
  * @param {object} context 
+ * @param {object|null} rowSelection
  * @returns {object}
  */
-export const useTableState = (props, { emit }) => {  
+export const useTableState = (props, { emit }, rowSelection) => {  
 
   const { proxy } = getCurrentInstance();
 
   const tableState = reactive({
-    selectedRowKeys: [],
-    selectedRows: [],
     loading: false, // 表格loading
     dataSource: [], // 表格数据
     scroll: { x: 1200 },
@@ -119,10 +125,11 @@ export const useTableState = (props, { emit }) => {
     total: 0,
     queryParams: {}, // 发送到后端的参数
     isFirstRender: true, // 是否首次渲染
-    checkedAll: false, // 是否全选
     indeterminate: computed(() => {
-      return tableState.selectedRowKeys?.length > 0
-        && !tableState.checkedAll
+      if(!rowSelection.value) return;
+      let { selectedRowKeys } = rowSelection.value;
+      return selectedRowKeys?.length > 0
+        && !rowSelection.value?.checkedAll
         && !!tableState.dataSource?.length;
     }),
   });
@@ -216,8 +223,7 @@ export const useTableState = (props, { emit }) => {
         } else {
           tableState.dataSource = data || [];
         }
-        tableState.selectedRowKeys = [];
-        tableState.selectedRows = [];
+        rowSelection.value?.onChange?.([], []);
       } catch (error) {
         console.log('error', error);
       }
@@ -226,6 +232,17 @@ export const useTableState = (props, { emit }) => {
         data: tableState.dataSource,
         total: tableState.total,
       };
+    },
+    /**
+     * @function 获取指定key的值
+     * @returns {any}
+     */
+    getRowKey(record) {
+      if (typeof props.rowKey === 'function') {
+        return props.rowKey(record);
+      }
+
+      return record?.[props.rowKey];
     },
   };
 
@@ -236,20 +253,9 @@ export const useTableState = (props, { emit }) => {
       tableState.total = props.total;
     }
   });
-  watchEffect(() => {
-    tableState.dataSource = props.dataSource || [];
-    tableState.selectedRowKeys = [];
-    tableState.selectedRows = [];
-  });
-  watchEffect(() => {
-    if(!tableState.selectedRowKeys?.length) {
-      tableState.checkedAll = false;
-      return;
-    }
-    let selectedSet = new Set(tableState.selectedRowKeys);
-    tableState.checkedAll = (tableState.dataSource || []).every(item => {
-      return selectedSet.has(item[props.rowKey]);
-    });
+  watch(() => props.dataSource, (list = []) => {
+    tableState.dataSource = list;
+    rowSelection.value?.onChange?.([], []);
   });
 
   return {

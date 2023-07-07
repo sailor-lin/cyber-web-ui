@@ -43,6 +43,8 @@ const Table = defineComponent({
       type: Object,
       default: () => {},
     },
+    // 是否显示选择功能
+    showRowSelection: Boolean,
     // 当前页数
     current: Number,
     // 每页条数
@@ -75,37 +77,41 @@ const Table = defineComponent({
     const columns = computed(() => useColumns(props.columns, props.action));
     // 分页配置
     const paginationProps = computed(() => usePagination(props.paginationProps));
-    // 表格状态
-    const { tableState, tableMethods } = useTableState(props, context);
     // 选中状态
-    const rowSelection = computed(() => useSelection(props.rowSelection, tableState));
+    const selectionState = reactive({
+      checkedAll: false, // 是否全选
+      selectedRows: [],
+      selectedRowKeys: [],
+    });
+    const rowSelection = computed(() => useSelection(props, selectionState));
+    // 表格状态
+    const { tableState, tableMethods } = useTableState(props, context, rowSelection);
 
     const methods = Object.assign(tableMethods, {
       /**
        * @function 全选/取消全选
        * @param {object} options
        */
-      checkAllHandler(options = {}) {
-        const { target = {} } = options;
-        if(target.checked) {
-          let rowKey = props.rowKey;
-          tableState.selectedRowKeys = tableState.dataSource.map(item => {
-            return typeof rowKey == 'string'
-              ? item[rowKey]
-              : rowKey(item);
-          });
-          tableState.selectedRows = [...tableState.dataSource];
-        } else {
-          tableState.selectedRows = [];
-          tableState.selectedRowKeys = [];
+      checkAllHandler({ target }) {
+        if(!rowSelection.value || !rowSelection.value?.onChange) {
+          selectionState.checkedAll = false;
+          return;
         }
+        const { onChange, onSelectAll } = rowSelection.value; 
+        let selectedRowKeys = [];
+        let selectedRows = [];
+        if(target.checked) {
+          selectedRowKeys = tableState.dataSource.map(item => methods.getRowKey(item));
+          selectedRows = [...tableState.dataSource];
+        }
+        onChange?.(selectedRowKeys, selectedRows);
         // 全选回调
-        unref(rowSelection).onSelectAll?.(target.checked, tableState.dataSource)
+        onSelectAll?.(target.checked, selectedRowKeys, selectedRows);
       },
       // 批量删除
       batchDelete() {
         if(props.batchDelete) {
-          props.batchDelete(tableState.selectedRowKeys, tableState.selectedRows)
+          props.batchDelete(rowSelection.value?.selectedRowKeys)
           return;
         }
         Modal.confirm({
@@ -116,7 +122,7 @@ const Table = defineComponent({
             pattern: 'error',
           },
           onOk: () => {
-            return props.onBatchDelete?.(tableState.selectedRowKeys, tableState.selectedRows);
+            return props.onBatchDelete?.(rowSelection.value?.selectedRowKeys, selectionState.selectedRows);
           },
         });
       },
@@ -128,9 +134,22 @@ const Table = defineComponent({
     watch(() => tableState.loading, (value, oldValue) => {
       if(value != oldValue) emit('update:loading', tableState.loading);
     });
+    watchEffect(() => {
+      if(!rowSelection.value) return;
+      const { selectedRowKeys = [] } = rowSelection.value;
+      if(!selectedRowKeys?.length) {
+        selectionState.checkedAll = false;
+        return;
+      }
+      let selectedSet = new Set(selectedRowKeys);
+      selectionState.checkedAll = (tableState.dataSource || []).every(item => {
+        return selectedSet.has(methods.getRowKey(item));
+      });
+    });
 
     expose({
       searchQuery: methods.searchQuery,
+      getRowSelection: () => unref(rowSelection)?.selectedRowKeys || [],
     });
     return () => {
       const customSlots = {
@@ -178,13 +197,13 @@ const Table = defineComponent({
         },
         // 全选按钮
         checkAll: () => {
-          return (!rowSelection.value?.show || props.rowSelection?.hideSelectAll)
+          return ((!props.showRowSelection && !props.rowSelection) || props.rowSelection?.hideSelectAll)
             && unref(rowSelection)?.type != 'checkbox'
               ? <div></div>
               : (
                   <div class="cyber-pagination-left">
                     <ACheckbox
-                      v-model:checked={tableState.checkedAll}
+                      v-model:checked={selectionState.checkedAll}
                       indeterminate={tableState.indeterminate}
                       onChange={methods.checkAllHandler}
                     >
@@ -192,7 +211,7 @@ const Table = defineComponent({
                     </ACheckbox>
                     <AButton
                       style="margin-left: 12px;"
-                      disabled={!tableState.selectedRowKeys?.length || tableState.loading}
+                      disabled={!rowSelection.value?.selectedRowKeys?.length || tableState.loading}
                       onClick={methods.batchDelete}
                     >删除</AButton>
                   </div>
