@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import EsBuild from './cyber-tools/es-build.js';
+import fse from 'fs-extra';
 
 export default defineConfig({
   plugins: [
@@ -9,7 +9,12 @@ export default defineConfig({
 		vueJsx({
 			transformOn: true,
 		}),
-		EsBuild(),
+		{
+			name: 'generate-less',
+			buildEnd: () => {
+				fse.outputFile('dist/cyber.less', `@import '../lib/index.less';`);
+			}
+		},
 	],
 	css: {
 		preprocessorOptions: {
@@ -37,8 +42,8 @@ export default defineConfig({
 		lib: {
 			entry: './components/index.js', //指定组件编译入口文件
 			name: 'CyberWebUi',
-			// formats: ['umd'],
-			fileName: (format) => `index.${format}.js`
+			formats: ['cjs'],
+			fileName: 'cyber.min.js',
 		},
 		//库编译模式配置
 		rollupOptions: {
@@ -49,7 +54,6 @@ export default defineConfig({
 				globals: {
 					vue: 'Vue',
 				},
-				exports: "named",
 			},
 		},
 		copyPublicDir: false,

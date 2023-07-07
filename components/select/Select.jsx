@@ -1,5 +1,5 @@
 import { Select as ASelect } from 'ant-design-vue';
-import Icon from '../icon/index.jsx';
+import Icon from '../icon/index';
 import { defineComponent, reactive, computed } from "vue";
 
 const Select = defineComponent({

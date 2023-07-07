@@ -1,6 +1,5 @@
 import * as components from './components.js';
-import packageJson from '../package.json';
-const version = packageJson.version;
+import version from './version/index.js';
 
 export * from './components';
 

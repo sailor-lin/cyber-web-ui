@@ -1,3 +1,4 @@
+import isWindows from '../_utils/is-windows.js';
 
 /**
  * @function 更改路由参数不刷新页面
@@ -6,6 +7,7 @@
  * @param {boolean} replace 是否调用replaceState方法
  */
 export function changeHistoryState(query = {}, cover = false, replace = true) {
+  if(!isWindows()) return;
   let key = 'pushState';
   if(replace) key = 'replaceState';
   let { url, params } = analysisHistory(window.location.href);
@@ -89,6 +91,7 @@ export function searchToJson(str) {
  * @param {string} url 指定路径
  */
 export function historyBack(url) {
+  if(!isWindows()) return;
   let { back, current, forward, go, previousPosition, position } = history.state || {};
   if(back && back != current) url = back;
   /* 
@@ -119,6 +122,7 @@ export function historyBack(url) {
  * @returns {object}
  */
 export function analysisHistory(url) {
+  if(!isWindows()) return;
   const href = new URL(url || window.location.href);
   if(href.hash) {
     // hash路由
@@ -144,6 +148,7 @@ export function analysisHistory(url) {
  * @returns {object}
  */
 export function initHistoryState(obj, url) {
+  if(!isWindows()) return;
   let { params } = analysisHistory(url || window.location.href);
   Object.keys(obj).forEach(key => {
     // 默认值为数组，对url的params值做转换

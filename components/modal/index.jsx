@@ -1,4 +1,4 @@
-import Icon from '../icon/index.jsx';
+import Icon from '../icon/index';
 import { Modal as AModal, message, Button as AButton } from 'ant-design-vue';
 import { watch, defineComponent, computed, reactive, createVNode, render as vueRender } from 'vue';
 

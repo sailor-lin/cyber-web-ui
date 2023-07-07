@@ -1,7 +1,7 @@
-import Icon from '../icon/index.jsx';
-import Modal from '../modal/index.jsx';
-import PageWrapper from '../page-wrapper/index.jsx';
-import CollapseForm from '../collapse-form/index.jsx';
+import Icon from '../icon/index';
+import Modal from '../modal/index';
+import PageWrapper from '../page-wrapper/index';
+import CollapseForm from '../collapse-form/index';
 import { Table as ATable, Pagination as APagination, Menu as AMenu, MenuItem as AMenuItem, Dropdown as ADropdown, Checkbox as ACheckbox, Button as AButton } from 'ant-design-vue';
 import { useColumns, usePagination, useSelection, useTableState } from './hooks/useState.js';
 import { defineComponent, computed, reactive, ref, unref, watch, watchEffect } from "vue";

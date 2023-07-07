@@ -1,4 +1,5 @@
-import Icon from '../icon/index.jsx';
+import Icon from '../icon/index';
+import isWindows from '../_utils/is-windows.js';
 import { Button as AButton } from 'ant-design-vue';
 import { filterEmpty } from "../_utils/index.js";
 import { reactive, defineComponent, onMounted, onUnmounted, getCurrentInstance, watch, nextTick } from "vue";
@@ -39,12 +40,16 @@ const collapseForm = defineComponent({
       watch(() => proxy.$refs.rightRef, () => {
         listener();
       }, { immediate: true });
-      // 监听resize
-      window.addEventListener('resize', listener);
+      if(isWindows()) {
+        // 监听resize
+        window.addEventListener('resize', listener);
+      }
     });
     onUnmounted(() => {
-      // 取消监听resize
-      window.removeEventListener('resize', listener);
+      if(isWindows()) {
+        // 取消监听resize
+        window.removeEventListener('resize', listener);
+      }
     });
 
     return () => {

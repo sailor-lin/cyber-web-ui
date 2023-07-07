@@ -1,4 +1,4 @@
-import Select from './Select.jsx';
+import Select from './Select';
 
 Select.install = (app) => {
   app.component(Select.name, Select);
