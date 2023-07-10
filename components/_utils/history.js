@@ -177,3 +177,26 @@ export function initHistoryState(obj, url) {
   });
   return obj;
 }
+
+/**
+ * @function 改造方法
+ * @param {string} type 方法类型 
+ * @returns 
+ */
+export function _historyWrap(type) {
+  const orig = history[type];
+  const e = new Event(type);
+  return function() {
+    const rv = orig.apply(this, arguments);
+    e.arguments = arguments;
+    window.dispatchEvent(e);
+    return rv;
+  };
+};
+
+export function initHistory() {
+  if(isWindows()) {
+    window.history.pushState = _historyWrap('pushState');
+    history.replaceState = _historyWrap('replaceState');
+  }
+}

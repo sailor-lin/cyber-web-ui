@@ -19,7 +19,7 @@ const Select = defineComponent({
     shape: {
       type: String,
       default: 'default',
-      vaildator: (value) => ['default', 'round'].includes(value),
+      validator: (value) => ['default', 'round'].includes(value),
     },
     // 箭头是否翻转
     arrowTurn: {

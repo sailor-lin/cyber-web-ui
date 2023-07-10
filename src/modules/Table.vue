@@ -82,7 +82,6 @@ const tableState = reactive({
     },
   ],
   dataSource: [],
-  selectedRowKeys: [],
 });
 const modalState = reactive({
   visible: false,
@@ -117,10 +116,6 @@ const methods = {
     };
     tableState.loading = false;
   },
-  onChange(list) {
-    console.log("!??")
-    tableState.selectedRowKeys = list;
-  },
   batchDelete(list) {
     console.log('batchDelete', list)
   },
@@ -128,10 +123,6 @@ const methods = {
     modalState.visible = true;
   },
 };
-
-watchEffect(() => {
-  console.log("??", tableState.selectedRowKeys)
-});
 
 onMounted(() => {
   methods.searchQuery();

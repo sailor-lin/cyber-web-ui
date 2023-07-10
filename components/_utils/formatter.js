@@ -27,5 +27,7 @@ export const inputFormat = (value, type = 'number') => {
     });
     return (isMinus ? '-' : '') + string;
   }
-  return value;
-}
+  if(!value) return value;
+  let isEndDot = /\.$/.test(value);
+  return Number(value) + (isEndDot ? '.' : '');
+};

@@ -15,9 +15,4 @@ const state = reactive({
   value1: undefined,
   value2: undefined,
 });
-const methods = {
-  changeSwitchControl(checked) {
-    console.log("!!", state.switchControl, checked);
-  },
-};
 </script>
