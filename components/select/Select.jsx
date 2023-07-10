@@ -15,16 +15,13 @@ const Select = defineComponent({
       type: String,
       default: '',
     },
-    // 最长字数
-    maxTagTextLength: {
-      type: Number,
+    // 下拉框形状
+    shape: {
+      type: String,
+      default: 'default',
+      vaildator: (value) => ['default', 'round'].includes(value),
     },
-    // 圆角
-    round: {
-      type: Boolean,
-      default: false,
-    },
-    // 箭头翻转
+    // 箭头是否翻转
     arrowTurn: {
       type: Boolean,
       default: true,
@@ -34,6 +31,7 @@ const Select = defineComponent({
     
     const selectState = reactive({
       open: false,
+      openFlag: true,
       selectValue: undefined,
     });
 
@@ -55,17 +53,13 @@ const Select = defineComponent({
       dropdownVisibleChange(open) {
         selectState.open = open;
       },
-      openSwitch() {
-        selectState.open = !selectState.open;
+      mousedown() {
+        selectState.openFlag = selectState.open;
       },
-      getTagLabel(label) {
-        let title = typeof label == 'string' ? label : label?.[0].props?.title || '';
-        if(props.maxTagTextLength && title.length > props.maxTagTextLength) {
-          title = title.slice(0, props.maxTagTextLength) + '...'
-        }
-        return title;
-      }
-    }
+      openSwitch() {
+        selectState.open = !selectState.openFlag;
+      },
+    };
 
     expose({
       openSwitch: methods.openSwitch
@@ -87,9 +81,9 @@ const Select = defineComponent({
         let className = (type == 'select'
           ? [
               props.label ? '' : `cyber-select`,
-              props.round ? 'cyber-select-round' : '',
+              props.shape == 'round' ? 'cyber-select-round' : '',
             ]
-          : []).join(' ');
+          : []);
         return (
           <ASelect
             placeholder="请输入"
@@ -97,7 +91,7 @@ const Select = defineComponent({
             style={`width: ${width.value}`}
             v-slots={customSlots}
             {...{ ...props, ...attrs }}
-            class={[className, props.arrowTurn ? 'cyber-select-arrow-turn' : ''].join(' ')}
+            class={[className, props.arrowTurn ? 'cyber-select-arrow-turn' : '']}
             v-model:open={selectState.open}
             onDropdownVisibleChange={methods.dropdownVisibleChange}
           ></ASelect>
@@ -106,12 +100,13 @@ const Select = defineComponent({
       const labelSelectRef = () => {
         let className = [
           `cyber-select cyber-select-group`,
-        ].join(" ");
+        ];
         return (
           <div class={className} style={{width: width.value ? 'auto' : '100%'}}>
             <div
               class="cyber-select-label pointer"
-              onClick={methods.openSwitch}
+              onMouseup={methods.openSwitch}
+              onMousedown={methods.mousedown}
             >{ props.label }</div>
             { selectRef('label') }
           </div>
