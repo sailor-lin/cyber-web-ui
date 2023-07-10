@@ -18,7 +18,7 @@
           background-color: #e5e8ec;
         }
         &.disabled {
-          background-color: #F4F6F9;
+          background-color: #FAFAFA;
           cursor: not-allowed;
           .g-icon {
             color: rgba(0, 0, 0, 0.25);
@@ -33,13 +33,15 @@
       .cyber-input-number-control {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         background: #FFFFFF;
         line-height: 1;
         border-radius: 0;
         border-right: 1px solid @border-color-base;
         .cyber-input-number-up,
         .cyber-input-number-down {
-          padding: 0.9px 6px;
+          padding: 0px 6px;
+          height: 50%;
           cursor: pointer;
           &:hover {
             background-color: #f8fbff;
@@ -48,7 +50,7 @@
             background-color: #e5e8ec;
           }
           &.disabled {
-            background-color: #F4F6F9;
+            background-color: #FAFAFA;
             cursor: not-allowed;
             .g-icon {
               color: rgba(0, 0, 0, 0.25);
@@ -68,7 +70,7 @@
       .cyber-input-addon-after {
         display: table-cell;
         padding: 5.6px 11px;
-        background-color: #F4F6F9;
+        background-color: #FAFAFA;
         transition: all 0.2s linear;
         border-radius: @border-radius-base;
       }
