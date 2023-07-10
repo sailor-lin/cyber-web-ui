@@ -47,9 +47,16 @@
         <AInput></AInput>
       </template>
       <template #right>
-        <AButton type="primary">添加</AButton>
+        <AButton type="primary" @click="methods.showModal">添加</AButton>
       </template>
     </c-table-wrapper>
+
+    <c-modal
+      title="添加"
+      v-model:visible="modalState.visible"
+    >
+      <AInput placeholder="请输入"></AInput>
+    </c-modal>
   </Card>
 </template>
 
@@ -76,6 +83,9 @@ const tableState = reactive({
   ],
   dataSource: [],
   selectedRowKeys: [],
+});
+const modalState = reactive({
+  visible: false,
 });
 const methods = {
   async searchQuery() {
@@ -113,7 +123,10 @@ const methods = {
   },
   batchDelete(list) {
     console.log('batchDelete', list)
-  }
+  },
+  showModal() {
+    modalState.visible = true;
+  },
 };
 
 watchEffect(() => {

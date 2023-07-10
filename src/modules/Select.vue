@@ -2,6 +2,7 @@
   <Card title="select">
     <c-select v-model:value="selectState.select" :options="options" width="160px"></c-select>
     <c-select v-model:value="selectState.select" label="本来" :options="options" width="160px"></c-select>
+    <c-select v-model:value="selectState.select" :options="options" width="160px" shape="round"></c-select>
     <a-input addon-before="测"></a-input>
   </Card>
 </template>
