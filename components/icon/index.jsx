@@ -46,8 +46,8 @@ const Icon = defineComponent({
           </svg>
         // 字体图标
         : <span
-            class={['cyber-icon icon iconfont', props.icon].join(' ')}
-            style={{fontSize: size.value}}
+            class={['cyber-icon icon iconfont', props.icon]}
+            style={{ fontSize: size.value, color: props.color || undefined }}
           >
             { slots.default?.() }
           </span>
