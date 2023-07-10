@@ -209,7 +209,7 @@ const Modal = defineComponent({
             'cyber-modal',
             props.large ? 'cyber-large-modal' : '',
             props.footer ? '' : 'hidden-footer'
-          ].join(' ')}
+          ]}
           maskClosable={false}
           maskStyle={modalState.maskStyle}
           v-slots={customSlots}
@@ -256,6 +256,10 @@ Modal.info = (config) => {
       ...(config?.okButtonProps || {})
     },
   })
-}
+};
+
+Modal.install = (app) => {
+  app.component(Modal.name, Modal);
+};
 
 export default Modal;
