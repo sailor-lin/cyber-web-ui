@@ -30,10 +30,12 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    // 是否禁用
     disabled: {
       type: Boolean,
       default: false,
     },
+    // 数字类型
     inputType: {
       type: String,
       default: 'number',
@@ -123,6 +125,12 @@ export default defineComponent({
     }, { immediate: true });
 
     return () => {
+      const customProps = {
+        ...props,
+        ...attrs,
+        "onUpdate:value": undefined,
+        addonAfter: undefined,
+      };
       const customSlots = {
         ...slots,
         addonBefore: () => {
@@ -198,10 +206,11 @@ export default defineComponent({
       return (
         <AInput
           class={['cyber-input-number', inputNumberState.numberMode]}
-          addonBefore={props.addonBefore}
-          onChange={methods.changeHandler}
+          {...customProps}
           v-model:value={inputNumberState.value}
           v-slots={customSlots}
+          onChange={methods.changeHandler}
+          addonBefore={props.addonBefore}
         ></AInput>
       );
     };

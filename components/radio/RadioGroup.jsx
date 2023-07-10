@@ -96,6 +96,7 @@ export default defineComponent({
           class="cyber-radio-group"
           onChange={methods.changeRadio}
           v-slots={slots}
+          {...{...attrs, "onUpdate:value": undefined}}
           button-style="solid"
         ></ARadioGroup>
       );
