@@ -120,7 +120,7 @@ export default defineComponent({
             pattern: 'error',
           },
           onOk: () => {
-            return props.onBatchDelete?.(rowSelection.value?.selectedRowKeys, selectionState.selectedRows);
+            return props.onBatchDelete?.(rowSelection.value?.selectedRowKeys);
           },
         });
       },

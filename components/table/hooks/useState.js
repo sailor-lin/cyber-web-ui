@@ -1,4 +1,4 @@
-import { watchEffect, getCurrentInstance, reactive, computed, h, watch } from 'vue';
+import { watchEffect, getCurrentInstance, reactive, computed, h } from 'vue';
 import { changeHistoryState, initHistoryState } from "../../_utils/history.js";
 
 /**
@@ -60,7 +60,6 @@ export const usePagination = (paginationProps = {}) => {
 export const useSelection = (props, selectionState) => {
   let onChange = (selectedRowKeys, selectedRows) => {
     selectionState.selectedRowKeys = selectedRowKeys;
-    selectionState.selectedRows = selectedRows;
   }
   if(props.rowSelection) {
     return {
@@ -155,7 +154,7 @@ export const useTableState = (props, { emit }, rowSelection) => {
     paginationChange(page, pageSize) {
       // 是否自定义切换分页方法
       if(props.paginationChange) {
-        props.paginationChange();
+        props.paginationChange(page, pageSize);
         return;
       }
       tableState.current = page;
@@ -183,6 +182,9 @@ export const useTableState = (props, { emit }, rowSelection) => {
     async searchQuery(params = {}) {
       if(!proxy.$axios) {
         throw new Error('axios is not defined!');
+      }
+      if(!params?.url) {
+        throw Error('The request parameter is missing a url address!');
       }
       params = JSON.stringify(params);
       let oldParams = JSON.stringify(tableState.queryParams);
@@ -225,7 +227,8 @@ export const useTableState = (props, { emit }, rowSelection) => {
         }
         rowSelection.value?.onChange?.([], []);
       } catch (error) {
-        console.log('error', error);
+        tableState.loading = false;
+        throw Error(error);
       }
       tableState.loading = false;
       return {
@@ -241,7 +244,6 @@ export const useTableState = (props, { emit }, rowSelection) => {
       if (typeof props.rowKey === 'function') {
         return props.rowKey(record);
       }
-
       return record?.[props.rowKey];
     },
   };
@@ -250,12 +252,13 @@ export const useTableState = (props, { emit }, rowSelection) => {
     if(!!props.current) {
       tableState.current = props.current || tableState.current;
       tableState.pageSize = props.pageSize || tableState.pageSize;
-      tableState.total = props.total;
     }
+    tableState.total = typeof props.total == 'number'
+      ? props.total
+      : tableState.total || 0;
   });
-  watch(() => props.dataSource, (list = []) => {
-    tableState.dataSource = list;
-    rowSelection.value?.onChange?.([], []);
+  watchEffect(() => {
+    tableState.dataSource = props.dataSource;
   });
 
   return {
