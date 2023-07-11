@@ -26,7 +26,7 @@ export default defineComponent({
             <div class="cyber-radio-button-content">
               { slots.default?.() }
               {
-                props.count || radioState.count == '0'
+                props.count || props.count == '0'
                   ? <span class="count">{ props.count }</span>
                   : undefined
               }

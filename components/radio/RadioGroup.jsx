@@ -60,7 +60,7 @@ export default defineComponent({
       // 监听url变化
       listenerHistory() {
         let { params } = analysisHistory(window.location.href);
-        if(params[props.groupKey] != state.radio) {
+        if(params[props.groupKey] != state.radio && params[props.groupKey]) {
           state.radio = params[props.groupKey];
           emit('update:value', state.radio);
         }
