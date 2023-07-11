@@ -1,0 +1,59 @@
+
+@import '../../style/theme/index.less';
+
+.cyber-page-label {
+  width: 100%;
+  min-height: 103px;
+  background: #ffffff;
+  border-radius: @border-radius-base;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.14);
+  margin-bottom: 20px;
+  .cyber-page-label-header {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    padding: 0 20px;
+    color: #666666;
+    font-size: 14px;
+    border-bottom: 1px solid #eff1f6;
+    .cyber-back-icon {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+  .cyber-page-label-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 27px 20px;
+    &-left {
+      display: flex;
+      align-items: center;
+      width: 0;
+      flex: 1;
+    }
+    .title-icon {
+      margin-right: 14px;
+    }
+    .cyber-page-label-content {
+      width: 0;
+      flex: 1;
+      .cyber-page-label-title {
+        font-size: 26px;
+        color: #2D3D48;
+        font-weight: 400;
+        letter-spacing: 1px;
+        line-height: 34px;
+      }
+      .cyber-page-label-tips {
+        line-height: 20px;
+        margin-top: 12px;
+        .document_link {
+          color: @classic-color;
+        }
+      }
+    }
+  }
+  
+}
