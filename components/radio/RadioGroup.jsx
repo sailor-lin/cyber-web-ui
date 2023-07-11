@@ -1,6 +1,6 @@
 import isWindows from '../_utils/is-windows.js';
 import { changeHistoryState, analysisHistory } from "../_utils/history.js";
-import { defineComponent, reactive, watch, onMounted, onUnmounted } from "vue";
+import { defineComponent, reactive, onMounted, onUnmounted, watchEffect } from "vue";
 import { RadioGroup as ARadioGroup } from "ant-design-vue";
 
 
@@ -35,8 +35,8 @@ export default defineComponent({
   setup(props, { attrs, slots, emit, expose }) {
     const state = reactive({
       radio: undefined,
-      isFirstRender: true, // 第一次渲染
       timeout: undefined,
+      isRender: false,
     });
 
     const methods = {
@@ -68,11 +68,16 @@ export default defineComponent({
     };
     
     methods.listenerHistory();
-    watch(() => [props.value], ([value]) => {
-      if(value || value === 0) {
-        state.radio = value;
-      }
-    }, { immediate: true, deep: true });
+
+    watchEffect(() => {
+      state.timeout && clearTimeout(state.timeout);
+      state.timeout = setTimeout(() => {
+        if(props.value || props.value === 0) {
+          state.radio = props.value;
+        }
+        state.isRender = true;
+      });
+    })
 
     if(isWindows()) {
       onMounted(() => {
@@ -95,7 +100,7 @@ export default defineComponent({
           v-model:value={state.radio}
           class="cyber-radio-group"
           onChange={methods.changeRadio}
-          v-slots={slots}
+          v-slots={state.isRender ? slots : {}}
           {...{...attrs, "onUpdate:value": undefined}}
           button-style="solid"
         ></ARadioGroup>

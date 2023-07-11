@@ -7,10 +7,7 @@ const Modal = defineComponent({
   name: "CModal",
   props: {
     // 标题
-    title: {
-      type: String,
-      default: '',
-    },
+    title: String,
     okText: {
       type: String,
       default: '确定',
@@ -36,8 +33,8 @@ const Modal = defineComponent({
       default: undefined,
     },
     footer: {
-      type: Boolean,
-      default: true,
+      type: String,
+      default: '确定取消按钮',
     },
     large: {
       type: Boolean,
@@ -58,10 +55,7 @@ const Modal = defineComponent({
       default: true,
     },
     // 标题icon
-    icon: {
-      type: String,
-      default: '',
-    },
+    icon: String,
     // 标题icon配置
     iconProps: {
       type: Object,
@@ -77,6 +71,7 @@ const Modal = defineComponent({
         ...props,
         ...attrs,
         title: undefined,
+        footer: modalState.isHiddenFooter ? null : undefined,
       };
     });
     const modalState = reactive({
@@ -86,6 +81,9 @@ const Modal = defineComponent({
         background: "rgba(0, 13, 22, 0.7200)",
         backdropFilter: "blur(1px)",
       },
+      isHiddenFooter: computed(() => {
+        return props.footer + '' == 'null';
+      }),
     });
     const methods = {
       // 确定事件
@@ -142,46 +140,45 @@ const Modal = defineComponent({
     return () => {
       const customSlots = {
         ...slots,
-        footer: () => (
-          <>
-            { props.footer
-              ? <div class="flex-between-center">
-                  <div class="flex-center">
-                    { slots?.footerLeft?.() }
-                  </div>
-                  <div class="footer-button-body">
-                    { slots?.footer?.()
-                      || (
-                          <>
-                            {
-                              props?.showCancel
-                              ? <AButton
-                                  type="ghost"
-                                  onClick={() => methods.isClose(props.onCancel)}
-                                  pattern="primary"
-                                  {...props.cancelButtonProps}
-                                >
-                                  { slots?.cancelText || props.cancelText }
-                                </AButton>
-                              : ''
-                            }
-                            <AButton
-                              type="primary"
-                              loading={!modalState.visible || modalState.loading}
-                              onClick={methods.confirm}
-                              {...props.okButtonProps}
-                            >
-                              { slots?.okText || props.okText }
-                            </AButton>
-                          </>
-                        )
-                    }
-                  </div>
+        footer: () => {
+          return modalState.isHiddenFooter
+          ? undefined
+          : (
+              <div class="flex-between-center">
+                <div class="flex-center">
+                  { slots?.footerLeft?.() }
                 </div>
-              : ''
-            }
-          </>
-        ),
+                <div class="footer-button-body">
+                  { slots?.footer?.()
+                    || (
+                        <>
+                          {
+                            props?.showCancel
+                            ? <AButton
+                                type="ghost"
+                                onClick={() => methods.isClose(props.onCancel)}
+                                pattern="primary"
+                                {...props.cancelButtonProps}
+                              >
+                                { slots?.cancelText || props.cancelText }
+                              </AButton>
+                            : ''
+                          }
+                          <AButton
+                            type="primary"
+                            loading={!modalState.visible || modalState.loading}
+                            onClick={methods.confirm}
+                            {...props.okButtonProps}
+                          >
+                            { slots?.okText || props.okText }
+                          </AButton>
+                        </>
+                      )
+                  }
+                </div>
+              </div>
+            )
+        },
         closeIcon: () => (
           <>
             { slots?.closeIcon?.() || <Icon isSvg icon="cyber-close" size="14"></Icon> }
