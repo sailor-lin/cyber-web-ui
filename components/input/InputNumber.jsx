@@ -10,6 +10,10 @@ export default defineComponent({
     value: {
       type: [String, Number],
     },
+    width: {
+      type: [String, Number],
+      default: '100%',
+    },
     max: {
       type: Number,
       default: Infinity,
@@ -53,6 +57,16 @@ export default defineComponent({
       numberMode: computed(() => {
         return props.addonAfter || props.addonBefore ? "wrap" : "default";
       }),
+    });
+    const width = computed(() => {
+      if (typeof props.width == "number") {
+        return props.width + "px";
+      } else if (typeof props.width == "string") {
+        if (props.width.includes("%")) return props.width;
+        return props.width.replace("px", "") + "px";
+      } else {
+        return;
+      }
     });
     const methods = {
       /**
@@ -206,6 +220,7 @@ export default defineComponent({
       return (
         <AInput
           class={['cyber-input-number', inputNumberState.numberMode]}
+          style={{ width: width.value }}
           {...customProps}
           v-model:value={inputNumberState.value}
           v-slots={customSlots}
