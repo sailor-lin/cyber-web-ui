@@ -1,4 +1,5 @@
 export { default as Icon } from './icon';
+export { default as Cell } from './cell';
 export { default as Modal } from './modal';
 export { default as Table } from './table';
 export { default as Input } from './input';
