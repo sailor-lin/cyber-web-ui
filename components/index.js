@@ -4,6 +4,7 @@ import { initHistory } from './_utils/history.js';
 import './style/iconfont/iconfont.js';
 
 export * from './components';
+export * from './api.js';
 
 export const install = function (app) {
   initHistory();
