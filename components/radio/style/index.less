@@ -39,36 +39,33 @@
     }
     // 未禁用样式
     &:not(.ant-radio-button-wrapper-disabled) {
-      // 正常样式
-      &.cyber-radio-button-default {
-        // 选中通用样式
-        &.ant-radio-button-wrapper-checked {
-          background-color: @primary-color;
-          &:hover {
-            background-color: hardlight(@primary-color, #ffffff33);
-          }
-          &:active {
-            background-color: hardlight(@primary-color, #00000033);
-          }
-          .count {
-            color: @primary-color;
-            background: #FFFFFF;
-          }
+      // 选中样式
+      &.ant-radio-button-wrapper-checked {
+        background-color: @primary-color;
+        &:hover {
+          background-color: hardlight(@primary-color, #ffffff33);
         }
-        // 未选中通用样式
-        &:not(.ant-radio-button-wrapper-checked) {
-          &:hover {
-            color: hardlight(@primary-color, #ffffff33);
-          }
-          .count {
-            color: #FFFFFF;
-            background-color: @primary-color
-          }
+        &:active {
+          background-color: hardlight(@primary-color, #00000033);
+        }
+        .count {
+          color: @primary-color;
+          background: #FFFFFF;
+        }
+      }
+      // 未选中样式
+      &:not(.ant-radio-button-wrapper-checked) {
+        &:hover {
+          color: hardlight(@primary-color, #ffffff33);
+        }
+        .count {
+          color: #FFFFFF;
+          background-color: @primary-color
         }
       }
       // 停用样式
-      &.cyber-radio-button-stop {
-        // 选中通用样式
+      &.cyber-radio-button-dark {
+        // 选中样式
         &.ant-radio-button-wrapper-checked {
           background-color: @stop;
           &:hover {
@@ -82,7 +79,7 @@
             background: #FFFFFF;
           }
         }
-        // 未选中通用样式
+        // 未选中样式
         &:not(.ant-radio-button-wrapper-checked) {
           &:hover {
             color: hardlight(@stop, #ffffff33);

@@ -18,7 +18,7 @@
       v-model:current="tableState.page"
       :dataSource="tableState.dataSource"
       v-model:pageSize="tableState.pageSize"
-      :total="tableState.total"
+      :total="2"
       :columns="tableState.columns"
       :paginationProps="{
         pageSizeOptions: ['1', '2', '3'],
@@ -88,33 +88,32 @@ const modalState = reactive({
 });
 const methods = {
   async searchQuery() {
-    // let { data, total } = await unref(tableRef).searchQuery({
-    //   url: '/activitylog/search',
-    //   method: 'get',
-    //   params: {},
-    // });
-    // tableState.dataSource = data;
-    // tableState.total = total;
-    // console.log("??", tableState.dataSource)
+    let { data, total } = await unref(tableRef).searchQuery({
+      url: '/activitylog/search',
+      method: 'get',
+      params: {},
+    });
+    tableState.dataSource = data;
+    tableState.total = total;
 
-    try {
-      tableState.loading = true;
-      tableState.dataSource = [];
-      let res = await axios.request({
-        url: '/activitylog/search',
-        method: 'get',
-        params: {
-          page: tableState.page,
-          pageSize: tableState.pageSize,
-        },
-      });
-      console.log('res', res);
-      tableState.dataSource = res.data?.data || [];
-      tableState.total = res.data?.row || 0;
-    } catch {
-      tableState.total = 0;
-    };
-    tableState.loading = false;
+    // try {
+    //   tableState.loading = true;
+    //   tableState.dataSource = [];
+    //   let res = await axios.request({
+    //     url: '/activitylog/search',
+    //     method: 'get',
+    //     params: {
+    //       page: tableState.page,
+    //       pageSize: tableState.pageSize,
+    //     },
+    //   });
+    //   console.log('res', res);
+    //   tableState.dataSource = res.data?.data || [];
+    //   tableState.total = res.data?.row || 0;
+    // } catch {
+    //   tableState.total = 0;
+    // };
+    // tableState.loading = false;
   },
   batchDelete(list) {
     console.log('batchDelete', list)

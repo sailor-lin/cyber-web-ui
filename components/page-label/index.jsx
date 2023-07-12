@@ -1,6 +1,6 @@
 import Icon from '../icon';
+import { defineComponent } from 'vue';
 import { historyBack } from '../_utils/history.js';
-import { defineComponent, ref } from 'vue';
 
 const PageLabel = defineComponent({
   name: 'CPageLabel',
@@ -40,7 +40,6 @@ const PageLabel = defineComponent({
   },
   setup(props, { attrs, slots, emit, expose }) {
     
-    const breadcrumbRef = ref();
     const methods = {
       // 默认返回方法
       backHandler() {

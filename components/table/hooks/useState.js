@@ -1,4 +1,4 @@
-import { watchEffect, getCurrentInstance, reactive, computed, h } from 'vue';
+import { watchEffect, getCurrentInstance, reactive, computed, h, watch } from 'vue';
 import { changeHistoryState, initHistoryState } from "../../_utils/history.js";
 
 /**
@@ -228,7 +228,12 @@ export const useTableState = (props, { emit }, rowSelection) => {
         rowSelection.value?.onChange?.([], []);
       } catch (error) {
         tableState.loading = false;
-        throw Error(error);
+        let msg = typeof error == 'string'
+          ? error
+          : error?.message || error?.error;
+        if(msg) {
+          throw new Error(msg);
+        }
       }
       tableState.loading = false;
       return {
@@ -249,16 +254,17 @@ export const useTableState = (props, { emit }, rowSelection) => {
   };
 
   watchEffect(() => {
+    tableState.total = props.total || 0;
+  });
+  watch(() => props.dataSource, (value) => {
+    tableState.dataSource = value;
+    tableState.total = props.total || 0;
+  });
+  watchEffect(() => {
     if(!!props.current) {
       tableState.current = props.current || tableState.current;
       tableState.pageSize = props.pageSize || tableState.pageSize;
     }
-    tableState.total = typeof props.total == 'number'
-      ? props.total
-      : tableState.total || 0;
-  });
-  watchEffect(() => {
-    tableState.dataSource = props.dataSource;
   });
 
   return {

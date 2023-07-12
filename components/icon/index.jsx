@@ -39,14 +39,14 @@ const Icon = defineComponent({
       return props.isSvg
         // svg图标
         ? <svg
-            class="cyber-svg-icon icon svg-icon"
+            class="icon cyber-svg-icon"
             style={{ fontSize: size.value, minWidth: size.value }}
           >
             <use xlink:href={`#${props.icon}`}></use>
           </svg>
         // 字体图标
         : <span
-            class={['cyber-icon icon iconfont', props.icon]}
+            class={[/^cyber\-/.test(props.icon) ? 'cyber-icon' : 'iconfont', props.icon]}
             style={{ fontSize: size.value, color: props.color || undefined }}
           >
             { slots.default?.() }

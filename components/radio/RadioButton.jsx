@@ -10,10 +10,9 @@ export default defineComponent({
       default: '',
     },
     // 状态
-    status: {
-      type: String,
-      default: 'default',
-      validator: (value) => ['', 'default', 'stop'].includes(value),
+    dark: {
+      type: Boolean,
+      default: false,
     },
   },
   setup(props, { attrs, slots, emit, expose }) {
@@ -37,12 +36,10 @@ export default defineComponent({
 
       return (
         <ARadioButton
-          class={['cyber-radio-button', `cyber-radio-button-${props.status == 'stop' ? 'stop' : 'default'}`]}
+          class={['cyber-radio-button', { 'cyber-radio-button-dark': props.dark }]}
           {...attrs}
           v-slots={customSlots}
-        >
-          
-        </ARadioButton>
+        ></ARadioButton>
       );
     };
   },
