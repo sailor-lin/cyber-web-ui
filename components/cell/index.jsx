@@ -62,7 +62,7 @@ const Cell = defineComponent({
               : undefined;
         },
         default: () => {
-          return slots.title
+          return slots.default
             ? slots.default?.()
             : props.to
               ? <a href={cellState.path} class="cyber-cell-router-link"
