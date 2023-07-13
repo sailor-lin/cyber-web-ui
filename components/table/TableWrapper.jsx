@@ -59,6 +59,7 @@ export default defineComponent({
               ref={tableRef}
               {...attrs}
               v-model:loading={tableWrapperState.loading}
+              v-slots={slots}
             ></Table>
           );
         }
