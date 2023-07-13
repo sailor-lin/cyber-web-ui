@@ -170,9 +170,9 @@ export function initHistoryState(obj, url) {
         obj[key] = params[key] || defaultValue;
       }
     }
-    // 字符串类型
+    // 其他类型
     else {
-      obj[key] = params[key] || obj[key] || undefined;
+      obj[key] = params[key] ||  obj[key];
     }
   });
   return obj;
