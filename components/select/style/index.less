@@ -1,22 +1,38 @@
 .cyber-select {
   display: inline-block;
   background-color: #fff;
-  border: 1px solid @border-color-base;
   border-radius: 4px;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   .cyber-select-label {
     display: inline-block;
     white-space: nowrap;
     padding: 0 12px;
-    border-right: 1px solid @border-color-base;
-    line-height: 32px;
+    line-height: 30px;
     background: #F4F6F9;
+    border: 1px solid @border-color-base;
+    border-top-left-radius: @border-radius-base;
+    border-bottom-left-radius: @border-radius-base;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    cursor: pointer;
+    &.ant-select-lg {
+      line-height: 38px;
+    }
+    &.ant-select-sm {
+      line-height: 22px;
+    }
+    &.cyber-select-label-disabled {
+      cursor: not-allowed;
+    }
+  }
+  &.cyber-select-group {
+    .ant-select-selector {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-left: none;
+    }
   }
   &.cyber-select-group .ant-select,
   &.ant-select {
-    .ant-select-selector {
-      border: none !important;
-    }
     // 箭头样式
     .ant-select-arrow {
       margin-top: 0;
@@ -51,5 +67,10 @@
       border-radius: 100px;
       background-color: #F5F7FA;
     }
+  }
+}
+.ant-form-item-has-error {
+  .cyber-select .cyber-select-label:not(.cyber-select-label-disabled) {
+    border-color: @error-color;
   }
 }

@@ -24,3 +24,5 @@ es
 *.njsproj
 *.sln
 *.sw?
+package-lock.json
+components/version

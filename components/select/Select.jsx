@@ -21,6 +21,15 @@ const Select = defineComponent({
       default: 'default',
       validator: (value) => ['default', 'round'].includes(value),
     },
+    size: {
+      type: String,
+      default: 'default',
+      validator: (value) => ['large', 'default', 'small'].includes(value),
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
     // 箭头是否翻转
     arrowTurn: {
       type: Boolean,
@@ -104,7 +113,12 @@ const Select = defineComponent({
         return (
           <div class={className} style={{width: width.value ? 'auto' : '100%'}}>
             <div
-              class="cyber-select-label pointer"
+              class={[
+                'cyber-select-label',
+                { 'cyber-select-label-disabled': props?.disabled },
+                { 'ant-select-lg': props.size == 'large' },
+                { 'ant-select-sm': props.size == 'small' },
+              ]}
               onMouseup={methods.openSwitch}
               onMousedown={methods.mousedown}
             >{ props.label }</div>
