@@ -34,7 +34,8 @@ const Select = defineComponent({
     arrowTurn: {
       type: Boolean,
       default: true,
-    }
+    },
+    filterOption: Function,
   },
   setup(props, { attrs, slots, emit, expose }) {
     
@@ -67,6 +68,11 @@ const Select = defineComponent({
       },
       openSwitch() {
         selectState.open = !selectState.openFlag;
+      },
+      filterOption(inputValue, treeNode) {
+        if(props.filterOption) return props.filterOption(inputValue, treeNode);
+        let label = props.fieldNames?.label || 'label';
+        return treeNode[label].includes(inputValue);
       },
     };
 
@@ -103,6 +109,7 @@ const Select = defineComponent({
             class={[className, props.arrowTurn ? 'cyber-select-arrow-turn' : '']}
             v-model:open={selectState.open}
             onDropdownVisibleChange={methods.dropdownVisibleChange}
+            filterOption={methods.filterOption}
           ></ASelect>
         )
       };

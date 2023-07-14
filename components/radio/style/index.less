@@ -67,26 +67,27 @@
       &.cyber-radio-button-dark {
         // 选中样式
         &.ant-radio-button-wrapper-checked {
-          background-color: @dark;
+          background-color: @dark-color;
+          border-color: @dark-color;
           &:hover {
-            background-color: hardlight(@dark, #ffffff33);
+            background-color: hardlight(@dark-color, #ffffff33);
           }
           &:active {
-            background-color: hardlight(@dark, #00000033);
+            background-color: hardlight(@dark-color, #00000033);
           }
           .count {
-            color: @dark;
+            color: @dark-color;
             background: #FFFFFF;
           }
         }
         // 未选中样式
         &:not(.ant-radio-button-wrapper-checked) {
           &:hover {
-            color: hardlight(@dark, #ffffff33);
+            color: hardlight(@dark-color, #ffffff33);
           }
           .count {
             color: #FFFFFF;
-            background-color: @dark
+            background-color: @dark-color
           }
         }
       }

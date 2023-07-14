@@ -31,6 +31,7 @@
   <Select></Select>
   <!-- 单选框 -->
   <Radio></Radio>
+  <Cell></Cell>
 </template>
 
 <script setup>
@@ -41,6 +42,7 @@ import CollapseForm from './modules/CollapseForm.vue';
 import Table from './modules/Table.vue';
 import Select from './modules/Select.vue';
 import Radio from './modules/Radio.vue';
+import Cell from './modules/Cell.vue';
 import { Breadcrumb as ABreadcrumb, BreadcrumbItem as ABreadcrumbItem } from 'ant-design-vue';
 </script>
 

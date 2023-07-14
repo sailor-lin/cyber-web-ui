@@ -6,6 +6,27 @@
   "description": "cyber-web-ui项目图标",
   "glyphs": [
     {
+      "icon_id": "474993",
+      "name": "tool",
+      "font_class": "tool",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "1727537",
+      "name": "308上一页、后退、返回-线性圆框",
+      "font_class": "shangyiyehoutuifanhui-xianxingyuankuang",
+      "unicode": "e8f0",
+      "unicode_decimal": 59632
+    },
+    {
+      "icon_id": "35063013",
+      "name": "运维管理",
+      "font_class": "yunweiguanli",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    },
+    {
       "icon_id": "34884342",
       "name": "刷新",
       "font_class": "shuaxin",

@@ -6,6 +6,7 @@ export { default as Input } from './input';
 export { default as Radio } from './radio';
 export { default as Switch } from './switch';
 export { default as Select } from './select';
+export { default as TreeSelect } from './treeSelect';
 export { default as PageLabel } from './page-label';
 export { default as PageWrapper } from './page-wrapper';
 export { default as CollapseForm } from './collapse-form';
